@@ -12,3 +12,5 @@ wheels/
 .idea/
 .mypy_cache/
 .pytest_cache/
+.vscode/
+*.db
