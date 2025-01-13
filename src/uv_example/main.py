@@ -6,7 +6,6 @@ from sample.models import Base, User
 
 def main():
     engine = create_engine('sqlite:///test.db', echo=True)
-    Base.metadata.create_all(engine)
 
     with Session(engine) as session:
         u1 = User(name='test1')
