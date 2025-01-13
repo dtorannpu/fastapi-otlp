@@ -3,15 +3,15 @@ services:
     image: postgres:17.2
     command: postgres -c log_destination=stderr -c log_statement=all -c log_connections=on -c log_disconnections=on
     ports:
-      - ${DATABASE_PORT_OUTER}:${DATABASE_PORT_INNER}
+      - ${DB_PORT_OUTER}:${DB_PORT_INNER}
     volumes:
       - db:/var/lib/postgres/data
     environment:
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${DATABASE_USERNAME}"]
+      test: ["CMD", "pg_isready", "-U", "${DB_USERNAME}"]
       interval: 1m30s
       timeout: 30s
       retries: 5

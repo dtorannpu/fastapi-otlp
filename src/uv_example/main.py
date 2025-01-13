@@ -1,4 +1,7 @@
+from dotenv import load_dotenv
 from sample.repositories import UserRepository
+
+load_dotenv()
 
 
 def main():

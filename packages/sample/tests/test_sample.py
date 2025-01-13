@@ -1,5 +1,7 @@
 import factory
+from sqlalchemy.orm import Session
 
+from sample.database import get_engine
 from sample.models import User
 
 
@@ -11,9 +13,7 @@ class UserFactory(factory.Factory):
 
 
 def test1():
-    # users = UserFactory.create_batch(10000)
-    # engine = create_engine('sqlite:///../../../test.db', echo=True)
-    # with Session(engine) as session:
-    #     session.add_all(users)
-    #     session.commit()
-    pass
+    users = UserFactory.create_batch(10000)
+    with Session(get_engine()) as session:
+        session.add_all(users)
+        session.commit()
