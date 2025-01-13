@@ -11,6 +11,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "factory-boy>=3.3.1",
     "mypy>=1.14.1",
     "pytest>=8.3.4",
     "ruff>=0.9.1",
@@ -20,4 +21,12 @@ dev = [
 sample = { workspace = true }
 
 [tool.uv.workspace]
-members = [ "packages/*" ]
+members = ["packages/*"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q -s"
+testpaths = [
+    "tests",
+    "integration",
+]
