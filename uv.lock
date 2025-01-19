@@ -374,6 +374,21 @@ wheels = [
 ]
 
 [[package]]
+name = "opentelemetry-instrumentation-dbapi"
+version = "0.50b0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "opentelemetry-api" },
+    { name = "opentelemetry-instrumentation" },
+    { name = "opentelemetry-semantic-conventions" },
+    { name = "wrapt" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/27/94/f6f2c369f75e02c551dfa6ab5818e606f73eca2409930c467fcdb0e5634e/opentelemetry_instrumentation_dbapi-0.50b0.tar.gz", hash = "sha256:2603ca39e216893026c185ca8c44c326c0a9a763d5afff2309bd6195c50b7c49", size = 12613 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0a/49/40def6cd71a6d248e9e48a731021cb9bfc70e5ec09986826ad29bd44b23c/opentelemetry_instrumentation_dbapi-0.50b0-py3-none-any.whl", hash = "sha256:23a730c3d7372b04b8a9507d2a67c5efbf92ff718eaa002b81ffbaf2b01d270f", size = 11533 },
+]
+
+[[package]]
 name = "opentelemetry-instrumentation-fastapi"
 version = "0.50b0"
 source = { registry = "https://pypi.org/simple" }
@@ -387,6 +402,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/8d/f8/1917b0b3e414e23c7d71c9a33f0ce020f94bc47d22a30f54ace704e07588/opentelemetry_instrumentation_fastapi-0.50b0.tar.gz", hash = "sha256:16b9181682136da210295def2bb304a32fb9bdee9a935cdc9da43567f7c1149e", size = 19214 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/cb/d6/37784bb30b213e2dd6838b9f96c2940907022c1b75ef1ff18a99afe42433/opentelemetry_instrumentation_fastapi-0.50b0-py3-none-any.whl", hash = "sha256:8f03b738495e4705fbae51a2826389c7369629dace89d0f291c06ffefdff5e52", size = 12079 },
+]
+
+[[package]]
+name = "opentelemetry-instrumentation-psycopg2"
+version = "0.50b0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "opentelemetry-api" },
+    { name = "opentelemetry-instrumentation" },
+    { name = "opentelemetry-instrumentation-dbapi" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5f/d6/d223e9149b5ff2a38c2092fef29c0cdaf2dfa2f314df172171f8c7964411/opentelemetry_instrumentation_psycopg2-0.50b0.tar.gz", hash = "sha256:86f8e507e98d8824f51bbc3c62121dbd4b8286063362f10b9dfa035a8da49f0b", size = 9161 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/41/be/73dc00f670ed2b3dd04932287f90fb72082d871a6be17d350b392e8038aa/opentelemetry_instrumentation_psycopg2-0.50b0-py3-none-any.whl", hash = "sha256:448297e63320711b5571f64bcf5d67ecf4856454c36d3bff6c3d01a4f8a48d18", size = 10064 },
 ]
 
 [[package]]
@@ -698,6 +727,7 @@ dependencies = [
     { name = "opentelemetry-api" },
     { name = "opentelemetry-exporter-otlp-proto-grpc" },
     { name = "opentelemetry-instrumentation-fastapi" },
+    { name = "opentelemetry-instrumentation-psycopg2" },
     { name = "opentelemetry-instrumentation-sqlalchemy" },
     { name = "opentelemetry-sdk" },
     { name = "psycopg2" },
@@ -723,6 +753,7 @@ requires-dist = [
     { name = "opentelemetry-api", specifier = ">=1.29.0" },
     { name = "opentelemetry-exporter-otlp-proto-grpc", specifier = ">=1.29.0" },
     { name = "opentelemetry-instrumentation-fastapi", specifier = ">=0.50b0" },
+    { name = "opentelemetry-instrumentation-psycopg2", specifier = ">=0.50b0" },
     { name = "opentelemetry-instrumentation-sqlalchemy", specifier = ">=0.50b0" },
     { name = "opentelemetry-sdk", specifier = ">=1.29.0" },
     { name = "psycopg2", specifier = ">=2.9.10" },
