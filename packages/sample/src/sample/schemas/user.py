@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, RootModel
 
 
 class CreateUser(BaseModel):
@@ -10,3 +10,7 @@ class UserResponse(BaseModel):
     name: str
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class UsersResponse(RootModel[list[UserResponse]]):
+    pass
