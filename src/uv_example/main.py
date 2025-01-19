@@ -1,13 +1,9 @@
-from dotenv import load_dotenv
-from sample.repositories import UserRepository
+import uvicorn
+from fastapi import FastAPI
 
-load_dotenv()
+from sample.api.api import api_router
 
-
-def main():
-    all_name = UserRepository.get_all_name()
-    print(all_name)
-
-
+app = FastAPI()
+app.include_router(api_router)
 if __name__ == "__main__":
-    main()
+    uvicorn.run(app, host="0.0.0.0", port=8000)

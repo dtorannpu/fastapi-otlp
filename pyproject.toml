@@ -9,6 +9,14 @@ dependencies = [
     "sample",
     "psycopg2>=2.9.10",
     "python-dotenv>=1.0.1",
+    "opentelemetry-api>=1.29.0",
+    "opentelemetry-sdk>=1.29.0",
+    "opentelemetry-exporter-otlp-proto-grpc>=1.29.0",
+    "opentelemetry-instrumentation-sqlalchemy>=0.50b0",
+    "fastapi>=0.115.6",
+    "uvicorn[standard]>=0.34.0",
+    "sqlmodel>=0.0.22",
+    "opentelemetry-instrumentation-fastapi>=0.50b0",
 ]
 
 [dependency-groups]
@@ -29,6 +37,7 @@ members = ["packages/*"]
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q -s"
+pythonpath = "src"
 testpaths = [
     "tests",
     "integration",
