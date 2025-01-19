@@ -1,12 +1,4 @@
-from sqlalchemy.orm import DeclarativeBase
 from sqlmodel import SQLModel, Field
-
-
-class Base(DeclarativeBase):
-    pass
-
-
-SQLModel.metadata = Base.metadata
 
 
 class User(SQLModel, table=True):
