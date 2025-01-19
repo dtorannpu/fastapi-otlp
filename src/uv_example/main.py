@@ -14,12 +14,10 @@ from sample.api.api import api_router
 
 
 def instrument(application: FastAPI):
-    resource = Resource.create(
-        {
-            ResourceAttributes.SERVICE_NAME: "uv-example",
-            ResourceAttributes.SERVICE_INSTANCE_ID: "uv-example",
-        }
-    )
+    resource = Resource.create({
+        ResourceAttributes.SERVICE_NAME: "fastapi-otlp",
+        ResourceAttributes.SERVICE_INSTANCE_ID: "fastapi-otlp",
+    })
 
     tracer_provider = TracerProvider(resource=resource)
     tracer_provider.add_span_processor(SimpleSpanProcessor(OTLPSpanExporter()))
@@ -29,6 +27,7 @@ def instrument(application: FastAPI):
     SQLAlchemyInstrumentor().instrument(enable_commenter=True, commenter_options={})
 
     Psycopg2Instrumentor().instrument()
+
 
 app = FastAPI()
 
