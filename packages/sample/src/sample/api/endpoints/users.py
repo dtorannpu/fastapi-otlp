@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 
 from sample.api.deps import SessionDep
 from sample.crud import user
-from sample.schemas.user import CreateUser, UserResponse, UsersResponse
+from sample.schemas.user import CreateUser, UserResponse, UsersResponse, UpdateUser
 
 router = APIRouter()
 
@@ -30,3 +30,10 @@ def get_user_by_id(user_id: int, session: SessionDep) -> UserResponse:
 @router.delete("{user_id}")
 def delete_user(user_id: int, session: SessionDep):
     user.user_delete(session=session, user_id=user_id)
+
+
+@router.put("{user_id}", response_model=UserResponse)
+def update_user(request: UpdateUser, user_id: int, session: SessionDep) -> UserResponse:
+    return UserResponse.model_validate(
+        user.user_update(session=session, update_user=request, user_id=user_id)
+    )

@@ -1,8 +1,16 @@
 from pydantic import BaseModel, Field, ConfigDict, RootModel
 
 
-class CreateUser(BaseModel):
+class UserBase(BaseModel):
     name: str = Field(max_length=30)
+
+
+class CreateUser(UserBase):
+    pass
+
+
+class UpdateUser(UserBase):
+    pass
 
 
 class UserResponse(BaseModel):
