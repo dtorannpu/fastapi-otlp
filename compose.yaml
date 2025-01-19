@@ -16,6 +16,16 @@ services:
       timeout: 30s
       retries: 5
       start_period: 30s
+  jaeger:
+    image: jaegertracing/jaeger:2.2.0
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+      - "4318:4318"
+      - "5778:5778"
+      - "9411:9411"
+    environment:
+      - LOG_LEVEL=debug
 volumes:
   db:
     driver: local
