@@ -39,8 +39,8 @@ members = ["packages/*"]
 minversion = "6.0"
 addopts = "-ra -q -s"
 testpaths = [
-    "tests",
-    "integration",
+    "**/tests",
+    "**/integration",
 ]
 
 [tool.mypy]
