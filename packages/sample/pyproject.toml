@@ -23,4 +23,3 @@ testpaths = [
     "tests",
     "integration",
 ]
-
