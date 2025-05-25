@@ -23,10 +23,11 @@ dependencies = [
 [dependency-groups]
 dev = [
     "alembic>=1.16.1",
+    "pre-commit>=4.2.0",
+    "ruff>=0.11.10",
+    "pytest>=8.3.5",
     "factory-boy>=3.3.3",
     "mypy>=1.15.0",
-    "pytest>=8.3.5",
-    "ruff>=0.11.10",
 ]
 
 [tool.uv.sources]
@@ -41,4 +42,52 @@ addopts = "-ra -q -s"
 testpaths = [
     "**/tests",
     "**/integration",
+]
+
+[tool.ruuf]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E", "W",
+    "F",
+    "I",
+    "N",
+    "UP",
+    "B"
+]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.tox]
+requires = ["tox>=4.19"]
+env_list = ["format", "type", "3.13"]
+
+[tool.tox.env.format]
+runner = "uv-venv-lock-runner"
+dependency_groups = ["dev"]
+commands = [["ruff", "format", "."], ["ruff", "check", "--fix", "."]]
+
+[tool.tox.env.format-check]
+runner = "uv-venv-lock-runner"
+dependency_groups = ["dev"]
+commands = [["ruff", "format", "--check", "."], ["ruff", "check", "."]]
+
+[tool.tox.env_run_base]
+runner = "uv-venv-lock-runner"
+dependency_groups = ["dev"]
+commands = [["pytest"]]
+
+[tool.tox.env.type]
+runner = "uv-venv-lock-runner"
+dependency_groups = ["dev"]
+commands = [
+    ["mypy", "src/"],
+    ["mypy", "tests/"],
+    ["mypy", "packages/sample/src"],
+    ["mypy", "packages/sample/tests"]
 ]

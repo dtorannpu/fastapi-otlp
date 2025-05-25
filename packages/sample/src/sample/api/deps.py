@@ -1,4 +1,5 @@
-from typing import Generator, Annotated
+from collections.abc import Generator
+from typing import Annotated
 
 from fastapi import Depends
 from sqlmodel import Session as SQLModelSession

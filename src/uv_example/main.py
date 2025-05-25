@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
+from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.psycopg2 import Psycopg2Instrumentor
@@ -8,16 +9,16 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import SimpleSpanProcessor
 from opentelemetry.semconv.resource import ResourceAttributes
-from opentelemetry import trace
-
 from sample.api.api import api_router
 
 
 def instrument(application: FastAPI):
-    resource = Resource.create({
-        ResourceAttributes.SERVICE_NAME: "fastapi-otlp",
-        ResourceAttributes.SERVICE_INSTANCE_ID: "fastapi-otlp",
-    })
+    resource = Resource.create(
+        {
+            ResourceAttributes.SERVICE_NAME: "fastapi-otlp",
+            ResourceAttributes.SERVICE_INSTANCE_ID: "fastapi-otlp",
+        }
+    )
 
     tracer_provider = TracerProvider(resource=resource)
     tracer_provider.add_span_processor(SimpleSpanProcessor(OTLPSpanExporter()))
