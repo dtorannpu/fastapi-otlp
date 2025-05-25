@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 
 from sample.api.deps import SessionDep
 from sample.crud import user
-from sample.schemas.user import CreateUser, UserResponse, UsersResponse, UpdateUser
+from sample.schemas.user import CreateUser, UpdateUser, UserResponse, UsersResponse
 
 router = APIRouter()
 
