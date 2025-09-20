@@ -44,7 +44,7 @@ testpaths = [
     "**/integration",
 ]
 
-[tool.ruuf]
+[tool.ruff]
 line-length = 88
 target-version = "py313"
 
