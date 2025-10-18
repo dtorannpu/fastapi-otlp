@@ -27,4 +27,4 @@ jobs:
         run: tox -e type
 
       - name: test
-        run: tox -e 3.13
+        run: tox -e 3.14
