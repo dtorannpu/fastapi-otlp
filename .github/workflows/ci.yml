@@ -18,7 +18,7 @@ jobs:
           cache-dependency-glob: "uv.lock"
 
       - name: Install tox
-        run: uv tool install --python-preference only-managed --python 3.13 tox --with tox-uv
+        run: uv tool install --python-preference only-managed --python 3.14 tox --with tox-uv
 
       - name: Format check
         run: tox -e format-check
@@ -27,4 +27,4 @@ jobs:
         run: tox -e type
 
       - name: test
-        run: tox -e 3.13
+        run: tox -e 3.14
