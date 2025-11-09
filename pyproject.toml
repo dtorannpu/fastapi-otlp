@@ -6,28 +6,28 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "sqlalchemy>=2.0.43",
-    "sample==0.1.0",
+    "sample",
     "psycopg2>=2.9.10",
-    "python-dotenv>=1.1.1",
+    "python-dotenv>=1.2.1",
     "opentelemetry-api>=1.36.0",
     "opentelemetry-sdk>=1.36.0",
     "opentelemetry-exporter-otlp-proto-grpc>=1.36.0",
-    "opentelemetry-instrumentation-sqlalchemy>=0.58b0",
-    "fastapi>=0.116.2",
-    "uvicorn[standard]>=0.36.0",
+    "opentelemetry-instrumentation-sqlalchemy>=0.59b0",
+    "fastapi>=0.121.1",
+    "uvicorn[standard]>=0.38.0",
     "sqlmodel>=0.0.25",
-    "opentelemetry-instrumentation-fastapi>=0.58b0",
-    "opentelemetry-instrumentation-psycopg2>=0.58b0",
+    "opentelemetry-instrumentation-fastapi>=0.59b0",
+    "opentelemetry-instrumentation-psycopg2>=0.59b0",
 ]
 
 [dependency-groups]
 test = [
-    "pytest>=8.4.2",
+    "pytest>=9.0.0",
     "factory-boy>=3.3.3",
 ]
 
 lint = [
-    "ruff>=0.13.1",
+    "ruff>=0.14.4",
 ]
 
 type = [
@@ -38,8 +38,8 @@ type = [
 dev = [
     { include-group = "lint" },
     { include-group = "type" },
-    "alembic>=1.16.5",
-    "pre-commit>=4.3.0",
+    "alembic>=1.17.1",
+    "pre-commit>=4.4.0",
 ]
 
 [tool.uv.sources]
