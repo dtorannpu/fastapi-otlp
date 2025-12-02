@@ -5,41 +5,41 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "sqlalchemy>=2.0.43",
+    "sqlalchemy==2.0.44",
     "sample",
-    "psycopg2>=2.9.10",
-    "python-dotenv>=1.2.1",
-    "opentelemetry-api>=1.36.0",
-    "opentelemetry-sdk>=1.36.0",
-    "opentelemetry-exporter-otlp-proto-grpc>=1.36.0",
-    "opentelemetry-instrumentation-sqlalchemy>=0.59b0",
-    "fastapi>=0.121.1",
-    "uvicorn[standard]>=0.38.0",
-    "sqlmodel>=0.0.25",
-    "opentelemetry-instrumentation-fastapi>=0.59b0",
-    "opentelemetry-instrumentation-psycopg2>=0.59b0",
+    "psycopg2==2.9.11",
+    "python-dotenv==1.2.1",
+    "opentelemetry-api==1.38.0",
+    "opentelemetry-sdk==1.38.0",
+    "opentelemetry-exporter-otlp-proto-grpc==1.38.0",
+    "opentelemetry-instrumentation-sqlalchemy==0.59b0",
+    "fastapi==0.123.0",
+    "uvicorn[standard]==0.38.0",
+    "sqlmodel==0.0.27",
+    "opentelemetry-instrumentation-fastapi==0.59b0",
+    "opentelemetry-instrumentation-psycopg2==0.59b0",
 ]
 
 [dependency-groups]
 test = [
-    "pytest>=9.0.0",
-    "factory-boy>=3.3.3",
+    "pytest==9.0.1",
+    "factory-boy==3.3.3",
 ]
 
 lint = [
-    "ruff>=0.14.4",
+    "ruff==0.14.7",
 ]
 
 type = [
     { include-group = "test" },
-    "mypy>=1.18.2",
+    "mypy==1.19.0",
 ]
 
 dev = [
     { include-group = "lint" },
     { include-group = "type" },
-    "alembic>=1.17.1",
-    "pre-commit>=4.4.0",
+    "alembic==1.17.2",
+    "pre-commit==4.5.0",
 ]
 
 [tool.uv.sources]
