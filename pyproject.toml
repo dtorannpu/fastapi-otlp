@@ -15,7 +15,7 @@ dependencies = [
     "opentelemetry-instrumentation-sqlalchemy==0.59b0",
     "fastapi==0.123.0",
     "uvicorn[standard]==0.40.0",
-    "sqlmodel==0.0.27",
+    "sqlmodel==0.0.31",
     "opentelemetry-instrumentation-fastapi==0.59b0",
     "opentelemetry-instrumentation-psycopg2==0.59b0",
 ]
