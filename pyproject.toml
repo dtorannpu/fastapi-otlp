@@ -38,7 +38,7 @@ type = [
 dev = [
     { include-group = "lint" },
     { include-group = "type" },
-    "alembic==1.17.2",
+    "alembic==1.18.0",
     "pre-commit==4.5.1",
 ]
 
