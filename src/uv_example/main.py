@@ -5,18 +5,17 @@ from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExport
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.psycopg2 import Psycopg2Instrumentor
 from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
-from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.resources import SERVICE_INSTANCE_ID, SERVICE_NAME, Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import SimpleSpanProcessor
-from opentelemetry.semconv.resource import ResourceAttributes
 from sample.api.api import api_router
 
 
 def instrument(application: FastAPI):
     resource = Resource.create(
         {
-            ResourceAttributes.SERVICE_NAME: "fastapi-otlp",
-            ResourceAttributes.SERVICE_INSTANCE_ID: "fastapi-otlp",
+            SERVICE_NAME: "fastapi-otlp",
+            SERVICE_INSTANCE_ID: "fastapi-otlp",
         }
     )
 
