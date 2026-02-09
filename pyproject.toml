@@ -13,7 +13,7 @@ dependencies = [
     "opentelemetry-sdk==1.39.1",
     "opentelemetry-exporter-otlp-proto-grpc==1.39.1",
     "opentelemetry-instrumentation-sqlalchemy==0.60b1",
-    "fastapi==0.128.0",
+    "fastapi==0.128.5",
     "uvicorn[standard]==0.40.0",
     "sqlmodel==0.0.32",
     "opentelemetry-instrumentation-fastapi==0.60b1",
