@@ -8,7 +8,7 @@ dependencies = [
     "sqlalchemy==2.0.46",
     "sample",
     "psycopg2==2.9.11",
-    "python-dotenv==1.2.1",
+    "python-dotenv==1.2.2",
     "opentelemetry-api==1.39.1",
     "opentelemetry-sdk==1.39.1",
     "opentelemetry-exporter-otlp-proto-grpc==1.39.1",
