@@ -9,6 +9,8 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     assignees:
       - "dtorannpu"
   - package-ecosystem: "github-actions"
@@ -17,3 +19,5 @@ updates:
       interval: "weekly"
     assignees:
       - "dtorannpu"
+    cooldown:
+      default-days: 7
