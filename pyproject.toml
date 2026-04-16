@@ -22,7 +22,7 @@ dependencies = [
 
 [dependency-groups]
 test = [
-    "pytest==9.0.2",
+    "pytest==9.0.3",
     "factory-boy==3.3.3",
 ]
 
