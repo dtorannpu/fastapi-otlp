@@ -39,7 +39,7 @@ dev = [
     { include-group = "lint" },
     { include-group = "type" },
     "alembic==1.18.5",
-    "pre-commit==4.6.0",
+    "pre-commit==4.6.1",
 ]
 
 [tool.uv]
