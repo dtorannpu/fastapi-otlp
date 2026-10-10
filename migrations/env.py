@@ -14,7 +14,7 @@ config = context.config
 config.set_section_option(
     "alembic",
     "sqlalchemy.url",
-    f"postgresql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT_OUTER')}/{os.getenv('DB_NAME')}",
+    f"postgresql+psycopg://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT_OUTER')}/{os.getenv('DB_NAME')}",
 )
 
 # Interpret the config file for Python logging.
