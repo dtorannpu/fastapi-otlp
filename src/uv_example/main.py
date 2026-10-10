@@ -3,7 +3,9 @@ import sys
 import uvicorn
 from fastapi import FastAPI
 from opentelemetry.instrumentation.psycopg import PsycopgInstrumentor
-from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
+from opentelemetry.instrumentation.sqlalchemy import (  # type: ignore[attr-defined]
+    SQLAlchemyInstrumentor,
+)
 from sample.api.api import api_router
 from sample.db.session import engine
 
@@ -20,4 +22,4 @@ if __name__ == "__main__":
     # psycopg の非同期モードは Windows の ProactorEventLoop では動かないため、
     # Windows のみ SelectorEventLoop を使う
     loop = "asyncio:SelectorEventLoop" if sys.platform == "win32" else "auto"
-    uvicorn.run(app, host="0.0.0.0", port=8000, loop=loop)
+    uvicorn.run(app, host="127.0.0.1", port=8000, loop=loop)

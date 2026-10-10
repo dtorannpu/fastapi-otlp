@@ -54,7 +54,7 @@ members = ["packages/*"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-ra -q -s"
+addopts = "-ra -q -s --import-mode=importlib"
 asyncio_mode = "auto"
 testpaths = [
     "**/tests",
@@ -64,17 +64,25 @@ testpaths = [
 [tool.ruff]
 line-length = 88
 target-version = "py314"
+extend-exclude = ["migrations"]
 
 [tool.ruff.lint]
-select = [
-    "E", "W",
-    "F",
-    "I",
-    "N",
-    "UP",
-    "B"
+select = ["ALL"]
+ignore = [
+    "E501",
+    "CPY001",  # copyright notice
+    "COM812",  # conflicts with ruff format
+    "D203",  # conflicts with D211
+    "D213",  # conflicts with D212
+    "D100",  # undocumented public module
+    "D101",  # undocumented public class
+    "D103",  # undocumented public function
+    "D104",  # undocumented public package
 ]
-ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S101", "D", "ANN", "PLR2004"]
+"**/integration/**" = ["S101", "D", "ANN", "PLR2004"]
 
 [tool.ruff.format]
 quote-style = "double"

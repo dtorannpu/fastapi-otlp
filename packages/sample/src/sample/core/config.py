@@ -18,10 +18,11 @@ class Settings(BaseModel):
     db: DatabaseSettings
 
 
-def get_env_var(key: str):
+def get_env_var(key: str) -> str:
     value = os.getenv(key)
     if value is None:
-        raise ValueError(f"Environment variable '{key}' is missing.")
+        msg = f"Environment variable '{key}' is missing."
+        raise ValueError(msg)
     return value
 
 
