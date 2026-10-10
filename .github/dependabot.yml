@@ -10,7 +10,7 @@ updates:
     schedule:
       interval: "weekly"
     cooldown:
-      default-days: 7
+      default-days: 1
     assignees:
       - "dtorannpu"
   - package-ecosystem: "github-actions"
@@ -20,4 +20,4 @@ updates:
     assignees:
       - "dtorannpu"
     cooldown:
-      default-days: 7
+      default-days: 1
