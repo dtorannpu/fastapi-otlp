@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
-from opentelemetry.instrumentation.psycopg2 import Psycopg2Instrumentor
+from opentelemetry.instrumentation.psycopg import PsycopgInstrumentor
 from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
 from opentelemetry.sdk.resources import SERVICE_INSTANCE_ID, SERVICE_NAME, Resource
 from opentelemetry.sdk.trace import TracerProvider
@@ -26,7 +26,7 @@ def instrument(application: FastAPI):
 
     SQLAlchemyInstrumentor().instrument(enable_commenter=True, commenter_options={})
 
-    Psycopg2Instrumentor().instrument()
+    PsycopgInstrumentor().instrument()
 
 
 app = FastAPI()
