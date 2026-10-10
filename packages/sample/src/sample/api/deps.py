@@ -1,10 +1,12 @@
-from collections.abc import AsyncGenerator
-from typing import Annotated
+from typing import TYPE_CHECKING, Annotated
 
 from fastapi import Depends
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from sample.db.session import SessionLocal
+
+if TYPE_CHECKING:
+    from collections.abc import AsyncGenerator
 
 
 async def get_session() -> AsyncGenerator[AsyncSession]:

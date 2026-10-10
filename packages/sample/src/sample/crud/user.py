@@ -1,10 +1,15 @@
-from collections.abc import Sequence
+from typing import TYPE_CHECKING
 
 from sqlmodel import select
-from sqlmodel.ext.asyncio.session import AsyncSession
 
 from sample.models.user import User
-from sample.schemas.user import CreateUser, UpdateUser
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+    from sqlmodel.ext.asyncio.session import AsyncSession
+
+    from sample.schemas.user import CreateUser, UpdateUser
 
 
 async def user_list(*, session: AsyncSession) -> Sequence[User]:
@@ -20,7 +25,7 @@ async def user_create(*, session: AsyncSession, create_user: CreateUser) -> User
     return db_obj
 
 
-async def user_delete(*, session: AsyncSession, user_id: int):
+async def user_delete(*, session: AsyncSession, user_id: int) -> None:
     statement = select(User).where(User.id == user_id)
     user = (await session.exec(statement)).one()
     await session.delete(user)
@@ -29,8 +34,7 @@ async def user_delete(*, session: AsyncSession, user_id: int):
 
 async def get_user_by_id(*, session: AsyncSession, user_id: int) -> User | None:
     statement = select(User).where(User.id == user_id)
-    user = (await session.exec(statement)).first()
-    return user
+    return (await session.exec(statement)).first()
 
 
 async def user_update(

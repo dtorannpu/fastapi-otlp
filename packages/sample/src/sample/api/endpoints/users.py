@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from sample.api.deps import SessionDep
+from sample.api.deps import SessionDep  # noqa: TC001 FastAPIが実行時に解決する
 from sample.crud import user
 from sample.schemas.user import CreateUser, UpdateUser, UserResponse, UsersResponse
 
@@ -28,7 +28,7 @@ async def get_user_by_id(user_id: int, session: SessionDep) -> UserResponse:
 
 
 @router.delete("{user_id}")
-async def delete_user(user_id: int, session: SessionDep):
+async def delete_user(user_id: int, session: SessionDep) -> None:
     await user.user_delete(session=session, user_id=user_id)
 
 
