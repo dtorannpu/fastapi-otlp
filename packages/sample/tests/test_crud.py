@@ -1,8 +1,9 @@
-from typing import cast
+from itertools import count
 
-import factory
 import pytest
 import pytest_asyncio
+from polyfactory import Use
+from polyfactory.factories.pydantic_factory import ModelFactory
 from sample.crud.user import (
     get_user_by_id,
     user_create,
@@ -17,27 +18,27 @@ from sqlalchemy.pool import StaticPool
 from sqlmodel import SQLModel
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-
-class UserFactory(factory.Factory):  # pyright: ignore[reportMissingTypeArgument, reportPrivateImportUsage]
-    class Meta:  # type: ignore[attr-defined]
-        model = User
-
-    id = factory.Sequence(lambda n: n + 1)  # type: ignore[attr-defined]
-    name = factory.Faker("name")  # type: ignore[attr-defined]
+_user_id_counter = count(1)
 
 
-class CreateUserFactory(factory.Factory):  # pyright: ignore[reportMissingTypeArgument, reportPrivateImportUsage]
-    class Meta:  # type: ignore[attr-defined]
-        model = CreateUser
+class UserFactory(ModelFactory[User]):
+    id = Use(lambda: next(_user_id_counter))
 
-    name = factory.Faker("name")  # type: ignore[attr-defined]
+    @classmethod
+    def name(cls) -> str:
+        return cls.__faker__.name()
 
 
-class UpdateUserFactory(factory.Factory):  # pyright: ignore[reportMissingTypeArgument, reportPrivateImportUsage]
-    class Meta:  # type: ignore[attr-defined]
-        model = UpdateUser
+class CreateUserFactory(ModelFactory[CreateUser]):
+    @classmethod
+    def name(cls) -> str:
+        return cls.__faker__.name()
 
-    name = factory.Faker("name")  # type: ignore[attr-defined]
+
+class UpdateUserFactory(ModelFactory[UpdateUser]):
+    @classmethod
+    def name(cls) -> str:
+        return cls.__faker__.name()
 
 
 @pytest_asyncio.fixture(name="session")
@@ -56,8 +57,8 @@ async def session_fixture():
 
 @pytest.mark.asyncio
 async def test_user_list(session: AsyncSession):
-    # Factory Boyを使用してテストユーザーを作成
-    users = [cast("User", UserFactory()) for _ in range(3)]
+    # Polyfactoryを使用してテストユーザーを作成
+    users = [UserFactory.build() for _ in range(3)]
     for user in users:
         session.add(user)
     await session.commit()
@@ -71,7 +72,7 @@ async def test_user_list(session: AsyncSession):
 
 @pytest.mark.asyncio
 async def test_user_create(session: AsyncSession):
-    create_user_data = cast("CreateUser", CreateUserFactory())
+    create_user_data = CreateUserFactory.build()
     new_user = await user_create(session=session, create_user=create_user_data)
 
     assert new_user.id is not None
@@ -85,8 +86,8 @@ async def test_user_create(session: AsyncSession):
 
 @pytest.mark.asyncio
 async def test_user_delete(session: AsyncSession):
-    # Factory Boyでテストユーザーを作成
-    user = cast("User", UserFactory())
+    # Polyfactoryでテストユーザーを作成
+    user = UserFactory.build()
     session.add(user)
     await session.commit()
     assert user.id is not None
@@ -100,8 +101,8 @@ async def test_user_delete(session: AsyncSession):
 
 @pytest.mark.asyncio
 async def test_get_user_by_id(session: AsyncSession):
-    # Factory Boyでテストユーザーを作成
-    user = cast("User", UserFactory())
+    # Polyfactoryでテストユーザーを作成
+    user = UserFactory.build()
     session.add(user)
     await session.commit()
     assert user.id is not None
@@ -118,14 +119,14 @@ async def test_get_user_by_id(session: AsyncSession):
 
 @pytest.mark.asyncio
 async def test_user_update(session: AsyncSession):
-    # Factory Boyでテストユーザーを作成
-    user = cast("User", UserFactory())
+    # Polyfactoryでテストユーザーを作成
+    user = UserFactory.build()
     session.add(user)
     await session.commit()
     assert user.id is not None
 
-    # 更新データをFactory Boyで生成
-    update_data = cast("UpdateUser", UpdateUserFactory())
+    # 更新データをPolyfactoryで生成
+    update_data = UpdateUserFactory.build()
     updated_user = await user_update(
         session=session, update_user=update_data, user_id=user.id
     )
