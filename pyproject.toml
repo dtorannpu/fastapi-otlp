@@ -21,7 +21,7 @@ dependencies = [
 
 [dependency-groups]
 test = [
-    "pytest==9.1.1",
+    "pytest==9.2.0",
     "polyfactory==3.5.0",
     "pytest-asyncio==1.4.1",
     "aiosqlite==0.22.1",
