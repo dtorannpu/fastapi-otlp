@@ -33,7 +33,7 @@ lint = [
 
 type = [
     { include-group = "test" },
-    "mypy==2.4.0",
+    "mypy==2.4.1",
 ]
 
 dev = [
