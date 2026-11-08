@@ -15,7 +15,7 @@ dependencies = [
     "fastapi==0.162.0",
     "uvicorn[standard]==0.54.0",
     "sqlmodel==0.0.48",
-    "psycopg[binary]==3.3.6",
+    "psycopg[binary]==3.3.8",
     "opentelemetry-instrumentation-psycopg==0.66b1",
 ]
 
