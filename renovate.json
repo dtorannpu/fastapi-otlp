@@ -17,5 +17,18 @@
     "github-actions",
     "docker-compose",
     "dockerfile"
+  ],
+  "packageRules": [
+    {
+      "description": "OpenTelemetry関連の依存をグループ化",
+      "matchManagers": [
+        "pep621",
+        "uv"
+      ],
+      "matchPackageNames": [
+        "/^opentelemetry-/"
+      ],
+      "groupName": "opentelemetry"
+    }
   ]
 }
