@@ -2,5 +2,20 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "timezone": "Asia/Tokyo",
+  "schedule": [
+    "before 5am on monday"
+  ],
+  "minimumReleaseAge": "1 day",
+  "assignees": [
+    "dtorannpu"
+  ],
+  "enabledManagers": [
+    "pep621",
+    "uv",
+    "github-actions",
+    "docker-compose",
+    "dockerfile"
   ]
 }
