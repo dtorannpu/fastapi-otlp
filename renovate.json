@@ -13,7 +13,6 @@
   ],
   "enabledManagers": [
     "pep621",
-    "uv",
     "github-actions",
     "docker-compose",
     "dockerfile"
@@ -22,8 +21,7 @@
     {
       "description": "OpenTelemetry関連の依存をグループ化",
       "matchManagers": [
-        "pep621",
-        "uv"
+        "pep621"
       ],
       "matchPackageNames": [
         "/^opentelemetry-/"
